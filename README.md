@@ -1,6 +1,6 @@
 # Smart Contract
 
-The primary goal of this solidity program is to construct a token contract that allows users to mint and burn tokens. Furthermore, the application provides for the tracking of balances connected with certain addresses and includes conditional statements to guarantee that certain actions are carried out only when viable.
+This project demonstrates error handling in Solidity smart contracts using `require()`, `assert()`, and `revert()` statements.
 
 ## Description
 
