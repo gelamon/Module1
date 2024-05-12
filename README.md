@@ -1,10 +1,18 @@
-# Smart Contract
+# Token Smart Contract
 
-This project demonstrates error handling in Solidity smart contracts using `require()`, `assert()`, and `revert()` statements.
+This Solidity smart contract demonstrates basic token functionality, including depositing Ether and internal error checking using require(), assert(), and revert() statements.
 
 ## Description
 
-This repository contains a Solidity smart contract (`ErrorHandlingExample.sol`) that showcases the usage of error handling mechanisms in Ethereum smart contracts. The contract includes functions to change ownership and perform a division operation with error checks.
+The Token smart contract is a basic example that demonstrates token functionality on the Ethereum blockchain. It includes the following features:
+
+Deposit Function:
+- Users can deposit Ether into the contract using the deposit() function.
+- The deposited Ether is added to the user’s balance and the total supply of tokens.
+
+Invariant Check with assert():
+- The assert() statement ensures that the contract’s balance is greater than or equal to the total supply.
+- If this condition fails, the transaction reverts, indicating an internal error.
 
 ## Getting Started
 
@@ -18,27 +26,15 @@ Once on the Remix website, create a new file by clicking the "+" symbol in the l
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract ErrorHandlingExample {
-    address public owner;
+contract Token {
+    mapping(address => uint) public balanceOf;
+    uint public totalSupply;
 
-    constructor() {
-        owner = msg.sender;
-    }
+    function deposit() public payable {
+        balanceOf[msg.sender] += msg.value;
+        totalSupply += msg.value;
 
-    function changeOwner(address _newOwner) public {
-        require(msg.sender == owner, "Only the owner can change the owner");
-
-        require(_newOwner != address(0), "Invalid new owner address");
-
-        owner = _newOwner;
-    }
-
-    function divide(uint256 _numerator, uint256 _denominator) public pure returns (uint256) {
-        assert(_denominator != 0);
-
-        require(_numerator / _denominator > 0, "Division result should be greater than zero");
-
-        return _numerator / _denominator;
+        assert(address(this).balance >= totalSupply);
     }
 }
 ```
