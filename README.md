@@ -1,6 +1,6 @@
-# Token Smart Contract
+# Voting Contract
 
-This Solidity smart contract demonstrates basic token functionality, including depositing Ether and internal error checking using require(), assert(), and revert() statements.
+This Voting contract demonstrates the implementation of a basic voting system on the Ethereum blockchain, leveraging smart contract functionalities to manage voting activities using require(), assert(), and revert() statements.
 
 ## Description
 
